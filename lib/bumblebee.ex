@@ -643,7 +643,8 @@ defmodule Bumblebee do
 
     Enum.find_value(@params_filenames, &lookup_params_filename(repo_files, &1, variant)) ||
       raise ArgumentError,
-            "none of the expected parameters files found in the repository." <>
+            "none of the expected parameters files found in the repository.\n" <>
+              " Filenames searched are: #{@params_filenames |> Enum.map(fn x -> "`#{x}`" end) |> Enum.join(", ")}\n" <>
               " If the file exists under an unusual name, try specifying :params_filename"
   end
 
